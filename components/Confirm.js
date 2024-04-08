@@ -1,3 +1,4 @@
+
 import RideSelector from './RideSelector'
 import { useContext } from 'react'
 import { UberContext } from '../context/uberContext'
@@ -11,7 +12,6 @@ const style = {
 }
 
 const Confirm = () => {
-   // const storeTripDetails =async () => {}
   const {
     currentAccount,
     pickup,
@@ -39,35 +39,34 @@ const Confirm = () => {
         }),
       })
 
-//       await metamask.request({
-//         method: 'eth_sendTransaction',
-//         params: [
-//           {
-//             from: currentAccount,
-//             to: process.env.NEXT_PUBLIC_UBER_ADDRESS,
-//             gas: '0x7SEF40', // 520000 Gwei
-//             value: ethers.utils.parseEther(price)._hex,
-//           },
-//         ],
-//       })
+      await metamask.request({
+        method: 'eth_sendTransaction',
+        params: [
+          {
+            from: currentAccount,
+            to: process.env.NEXT_PUBLIC_UBER_ADDRESS,
+            gas: '0x7EF40', // 520000 Gwei
+            value: ethers.utils.parseUnits(price)._hex,
+          },
+        ],
+      })
     } catch (error) {
       console.error(error)
     }
   }
 
   return (
-    <div className={style.wrapper}>
-      <div className={style.rideSelectorContainer}style={{ color: 'black' }}>
-        <RideSelector />
-        {/* {{pickupCoordinates && dropoffCoordinates && <RideSelector />} } */}
+    <div className={style.wrapper} style={{color:'black'}}>
+      <div className={style.rideSelectorContainer}>
+        {pickupCoordinates && dropoffCoordinates && <RideSelector />}
       </div>
       <div className={style.confirmButtonContainer}>
         <div className={style.confirmButtonContainer}>
           <div
             className={style.confirmButton}
-            onClick={() => storeTripDetails(pickup ,dropff)}
+            onClick={() => storeTripDetails(pickup, dropoff)}
           >
-            Confirm UberX
+            Confirm {selectedRide.service || 'UberX'}
           </div>
         </div>
       </div>

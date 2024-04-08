@@ -17,11 +17,11 @@ const style = {
 }
 const Navbar = () => {
    const { currentAccount, connectWallet, currentUser } = useContext(UberContext)
-
+  console.log(currentUser)
   return (
     <div className={style.wrapper}>
       <div className={style.leftMenu}>
-        <div className={style.logo}>Uber</div>
+        <div className={style.logo}>P2P RIDE</div>
         <div className={style.menuItem}>Ride</div>
         <div className={style.menuItem}>Drive</div>
         <div className={style.menuItem}>More</div>

@@ -12,3 +12,4 @@ const getLocationCoordinates = async (req, res) => {
   }
   
   export default getLocationCoordinates
+  

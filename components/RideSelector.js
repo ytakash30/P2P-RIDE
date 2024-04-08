@@ -1,44 +1,8 @@
-// import Image from 'next/image'
-// import ethLogo from '../assets/eth-logo.png'
-import { useEffect, useContext ,useState } from 'react'
-import { UberContext } from '../context/uberContext'
-import uberX from '../assets/rides/uberX.png'
-import uberBlack from '../assets/rides/uberBlack.png'
-import uberblackSuv from '../assets/rides/uberBlackSuv.png'
-import uberXL from '../assets/rides/uberXL.png'
-import uberSelect from '../assets/rides/uberSelect.png'
-import ethLogo from '../assets/eth-logo.png'
 import Image from 'next/image'
-// const carList =[
-//     {
-//         Service:'UberX' ,
-//         iconUrl: uberX , 
-//         priceMultiplier:1 ,
-//     },
-//     {
-//         Service:'UberBlack' ,
-//         iconUrl: uberBlack , 
-//         priceMultiplier:1.5 , 
-//     },
-//     {
-//         Service:'UberBlackSuv' ,
-//         iconUrl: uberblackSuv , 
-//         priceMultiplier:1.5 ,
-//     },
-//     {
-//         Service:'UberSelect' ,
-//         iconUrl: uberSelect , 
-//         priceMultiplier:1.5 ,
-//     },
-//     {
-//         Service:'UberXL' ,
-//         iconUrl: uberXL , 
-//         priceMultiplier:1.5 ,
-//     },
-    
-// ]
+import ethLogo from '../assets/eth-logo.png'
+import { useEffect, useContext, useState } from 'react'
+import { UberContext } from '../context/uberContext'
 
-const basePrice= 1542
 const style = {
   wrapper: `h-full flex flex-col`,
   title: `text-gray-500 text-center text-xs py-2 border-b`,
@@ -55,9 +19,11 @@ const style = {
 
 const RideSelector = () => {
   const [carList, setCarList] = useState([])
-  const { selectedRide, setSelectedRide, setPrice, basePrice } = useContext(UberContext)
+  const { selectedRide, setSelectedRide, setPrice, basePrice } =
+    useContext(UberContext)
 
-console.log(basePrice)
+  console.log(basePrice)
+
 
   useEffect(() => {
     ;(async () => {
@@ -66,7 +32,7 @@ console.log(basePrice)
 
         const data = await response.json()
         setCarList(data.data)
-       setSelectedRide(data.data[0])
+        setSelectedRide(data.data[0])
       } catch (error) {
         console.error(error)
       }
@@ -78,7 +44,19 @@ console.log(basePrice)
       <div className={style.title}>Choose a ride, or swipe up for more</div>
       <div className={style.carList}>
         {carList.map((car, index) => (
-            <div key ={index} className={style.car}>
+          <div
+            key={index}
+            className={`${
+              selectedRide.service === car.service
+                ? style.selectedCar
+                : style.car
+            }`}
+            onClick={() => {
+              setSelectedRide(car)
+              
+              setPrice(((basePrice / 10 ** 5) * car.priceMultiplier).toFixed(5))
+            }}
+          >
             <Image
               src={car.iconUrl}
               className={style.carImage}

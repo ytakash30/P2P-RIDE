@@ -1,6 +1,12 @@
 import { createContext, useState, useEffect } from 'react'
 import { faker } from '@faker-js/faker'
 
+const generateRandomName = () => {
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
+  return `${firstName} ${lastName}`;
+};
+
 
 export const UberContext = createContext()
 
@@ -141,7 +147,7 @@ export const UberProvider = ({ children }) => {
         },
         body: JSON.stringify({
           userWalletAddress: address,
-          name: faker.name.findName(),
+          name: generateRandomName(),
         }),
       })
     } catch (error) {
@@ -164,7 +170,7 @@ export const UberProvider = ({ children }) => {
 
   return (
     <UberContext.Provider
-    value={{
+     value={{
         pickup,
         setPickup,
         dropoff,
@@ -178,10 +184,10 @@ export const UberProvider = ({ children }) => {
         currentUser,
         selectedRide,
         setSelectedRide,
-        // price,
-        // setPrice,
-        // basePrice,
-         metamask,
+        price,
+        setPrice,
+        basePrice,
+        metamask,
       }}
     >
       {children}
