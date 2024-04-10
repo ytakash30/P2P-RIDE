@@ -8,12 +8,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import avatar from '../temp/avatar.jpg'
 import { BsPerson } from 'react-icons/bs'
+import Footer from '@/components/Footer'
 
 const style = {
   wrapper: `h-screen w-screen flex flex-col`,
+  rightMenu: `flex gap-3 items-center`,
+  userImageContainer: `mr-2`,
+  userImage: `h-10 w-10 mr-4 rounded-full p-px object-cover cursor-pointer`,
+  loginButton: `flex items-center cursor-pointer rounded-full hover:bg-[#333333] px-4 py-1`,
+  menuItem: `text-lg text-black font-medium flex items-center mx-4 cursor-pointer`,
   main: `h-full w-screen flex-1 z-10`,
   mapContainer: `flex-1 w-full h-full`,
-  rideRequestContainer: `h-full w-[400px] ml-[1rem] py-[3rem] absolute top-0 left-0 flex flex-col justify-end z-20`,
+  rideRequestContainer: ` h-[680px] w-[400px] ml-[1rem] py-[3rem] absolute top-20 left-0 flex flex-col justify-end z-20`,
   rideRequest: `h-full max-h-[700px] bg-white rounded-lg flex flex-col overflow-scroll`,
 }
 
@@ -22,7 +28,8 @@ const Header1 = () => {
   console.log(currentUser)
   return (
     <div className='flex justify-between border-b-2 border-gray-300 items-center h-22 px-10 '>  
-      <Image src='/logo2.jpeg' alt="logo" width={200} height={200} className="h-20 px-4"/>
+ <Link href="/">
+      <Image src='/logo2.jpeg' alt="logo" width={200} height={200} className="h-20 px-4"/></Link> 
       <div className="border-r border-gray-300 h-full flex w-50 ">
         <div className="border-r border-gray-300 w-48 h-full flex items-center px-2">
           <Image src={"/car.jpg"} alt="image" width={40} height={40} className="w-10 h-10 rounded-full mr-2" />
@@ -102,6 +109,7 @@ export default function BookRide() {
           <Confirm />
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }

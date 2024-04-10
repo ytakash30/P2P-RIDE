@@ -7,7 +7,7 @@ import { UberContext } from '../context/uberContext'
 import Link from 'next/link'; 
 
 const style = {
-    menuItem: `text-lg text-white font-medium flex items-center mx-4 cursor-pointer`,
+    menuItem: `text-lg text-black font-medium flex items-center mx-4 cursor-pointer`,
     rightMenu: `flex gap-3 items-center`,
     userImageContainer: `mr-2`,
     userImage: `h-10 w-10 mr-4 rounded-full p-px object-cover cursor-pointer`,
@@ -19,8 +19,10 @@ const Header1 = () => {
     const { currentAccount, connectWallet, currentUser } = useContext(UberContext)
   console.log(currentUser)
   return (
-    <div className='flex justify-between border-b-2 border-gray-300 items-center h-22 px-10 '>  
-      <Image src='/logo2.jpeg' alt="logo" width={200} height={200} className="h-20 px-4"/>
+    <div className='flex justify-between border-b-2 border-gray-300 items-center h-22 px-10 '> 
+      <Link href="/">
+      <Image src='/logo2.jpeg' alt="logo" width={200} height={200} className="h-20 px-4"/></Link> 
+      {/* <Image src='/logo2.jpeg' alt="logo" width={200} height={200} className="h-20 px-4"/> */}
       <div className="border-r border-gray-300 h-full flex w-50 ">
         <div className="border-r border-gray-300 w-48 h-full flex items-center px-2">
           <Image src={"/car.jpg"} alt="image" width={40} height={40} className="w-10 h-10 rounded-full mr-2" />

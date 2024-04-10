@@ -35,7 +35,7 @@ const Map = () => {
   }, [pickupCoordinates, dropoffCoordinates])
 
   const addToMap = (map, coordinates) => {
-    const marker1 = new mapboxgl.Marker().setLngLat(coordinates).addTo(map)
+    const marker1 = new mapboxgl.Marker().setLngLat(coordinates).addTo(map) //POINT THE LOCATION
   }
 
   return <div className={style.wrapper} id='map' />
