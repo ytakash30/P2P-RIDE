@@ -11,7 +11,7 @@ const Header2 = () => {
                   Enjoy your first ride with us
                 </button>
                 <Link href="/Booknow">
-                <button className="h-10 my-5 px-10 hover:cursor-pointer hover:bg-gray-600  border-2 border-white text-white rounded-2xl">
+                <button className="h-10 my-5 px-10 hover:cursor-pointer hover:bg-gray-500  border-2 border-white text-white rounded-2xl">
   Book now
 </button>
 
