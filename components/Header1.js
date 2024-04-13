@@ -41,20 +41,28 @@ const Header1 = () => {
             <p className="text-gray-400 text-xs line-clamp-1">Trusted by thousands of people</p>
           </div>
         </div>
+        <Link href="/about">
         <div className="border-r border-gray-300 w-48 h-full flex items-center px-2">
           <Image src="/about.png" alt="image" width={40} height={40} className="w-10 h-10 rounded-full mr-2" />
           <div>
             <h3 className="font-bold">About us</h3>
             <p className="text-gray-400 text-xs line-clamp-1">Know about our company</p>
           </div>
-        </div>
-        <div className="border-r border-gray-300 w-48 h-full flex items-center px-2">
-          <Image src="/phone.jpg" alt="image" width={40} height={40} className="w-10 h-10 rounded-full mr-2" />
-          <div>
-            <h3 className="font-bold">8800880080</h3>
-            <p className="text-gray-400 text-xs line-clamp-1">Call us for help</p>
           </div>
-        </div>
+          </Link>
+
+
+          <Link href="/ContactUs">
+  <div className="border-r border-gray-300 w-48 h-full flex items-center px-2" style={{ cursor: 'pointer' }}>
+    <Image src="/phone.jpg" alt="image" width={40} height={40} className="w-10 h-10 rounded-full mr-2" />
+    <div>
+      <h3 className="font-bold">Contact Us</h3>
+      <p className="text-gray-400 text-xs line-clamp-1">Email us for help</p>
+    </div>
+  </div>
+</Link>
+
+
         <div className="flex items-center px-3 ">
           <div className={style.menuItem}>{currentUser.name?.split(' ')[0]}</div>
 
