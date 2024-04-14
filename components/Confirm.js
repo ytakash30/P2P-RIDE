@@ -1,17 +1,23 @@
+import RideSelector from './RideSelector';
+import { useContext } from 'react';
+import { UberContext } from '../context/uberContext';
+import { useRouter } from 'next/router';
 
-import RideSelector from './RideSelector'
-import { useContext } from 'react'
-import { UberContext } from '../context/uberContext'
-import { ethers } from 'ethers'
+// import { ethers } from 'ethers';
+
+
 
 const style = {
   wrapper: `flex-1 h-full flex flex-col justify-between`,
   rideSelectorContainer: `h-full flex flex-col overflow-scroll`,
-  confirmButtonContainer: ` border-t-2 cursor-pointer z-10`,
+  confirmButtonContainer: `border-t-2 cursor-pointer z-10`,
   confirmButton: `bg-black text-white m-4 py-4 text-center text-xl`,
-}
+};
 
 const Confirm = () => {
+
+  const router = useRouter();
+  
   const {
     currentAccount,
     pickup,
@@ -21,7 +27,7 @@ const Confirm = () => {
     pickupCoordinates,
     dropoffCoordinates,
     metamask,
-  } = useContext(UberContext)
+  } = useContext(UberContext);
 
   const storeTripDetails = async (pickup, dropoff) => {
     try {
@@ -37,27 +43,29 @@ const Confirm = () => {
           price: price,
           selectedRide: selectedRide,
         }),
-      })
+      });
 
-      await metamask.request({
-        method: 'eth_sendTransaction',
-        params: [
-          {
-            from: currentAccount,
-            to: process.env.NEXT_PUBLIC_UBER_ADDRESS,
-            gas: '0x7EF40', // 520000 Gwei
-            value: ethers.utils.parseUnits(price)._hex,
-          },
-        ],
-      })
+      // await metamask.request({
+      //   method: 'eth_sendTransaction',
+      //   params: [
+      //     {
+      //       from: currentAccount,
+      //       to: process.env.NEXT_PUBLIC_UBER_ADDRESS,
+      //       gas: '6721975', // 520000 Gwei
+      //       value: ethers.parseEther(price)._hex,
+      //     },
+      //   ],
+      // });
+      router.push('/finding');
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+    
+  };
 
   return (
-    <div className={style.wrapper} style={{color:'black'}}>
-      <div className={style.rideSelectorContainer}>
+    <div className={style.wrapper}>
+      <div className={style.rideSelectorContainer} style={{ color: 'black' }}>
         {pickupCoordinates && dropoffCoordinates && <RideSelector />}
       </div>
       <div className={style.confirmButtonContainer}>
@@ -71,7 +79,7 @@ const Confirm = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Confirm
+export default Confirm;

@@ -17,6 +17,9 @@ const saveTrips = async (req, res) => {
         _ref: req.body.userWalletAddress,
         _type: 'reference',
       },
+      confirmation: false, 
+      riderWalletAddress:req.body.userWalletAddress,
+
     }
 
     await client.createIfNotExists(tripDoc)

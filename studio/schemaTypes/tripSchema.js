@@ -36,5 +36,22 @@ export default defineType({
       title: 'Passenger',
       to: [{ type: 'users' }],
     }),
+    defineField({
+      name: 'confirmation',
+      type: 'boolean',
+      title: 'Confirmation',
+      initial: false, // Set initial value to false (NO)
+    }),
+    defineField({
+      name: 'driverWalletAddress',
+      type: 'string',
+      title: 'Driver Wallet Address',
+      initialValue: null,
+    }),
+    defineField({
+      name: 'riderWalletAddress',
+      type: 'string',
+      title: 'Rider Wallet Address',
+    }),
   ],
 })
